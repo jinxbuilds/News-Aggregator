@@ -1,7 +1,7 @@
 import requests
 import streamlit as st
 
-API_KEY = "bcae4a940d594625832d8b4a0b5f1b49"
+API_KEY = "YOUR_API_KEY_HERE"
 BASE_URL = "https://newsapi.org/v2/everything"
 
 # Initialize page_size in session state
