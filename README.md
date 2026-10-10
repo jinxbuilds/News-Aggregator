@@ -1,57 +1,63 @@
-Here’s a **very simple README.md** — short, clear, and to the point.
+# News Aggregator (demo)
 
----
+A small Streamlit app that searches news by topic and can summarize articles with AI (Claude or Gemini).
 
-# Personal AI News Aggregator
+**It runs with zero setup.** Every API key is optional:
 
-A simple Streamlit app that fetches and displays news articles based on a user-selected topic using the NewsAPI.
-
----
+| Key | If missing |
+|---|---|
+| `NEWS_API_KEY` | Demo mode with built-in sample articles (try `ai`, `space`, `climate`, `solar`) |
+| `ANTHROPIC_API_KEY` / `GEMINI_API_KEY` | AI buttons are hidden |
 
 ## Features
 
-* Search news by topic
-* Displays latest articles
-* “Load More” button to fetch additional results
-* Built with Streamlit and Python
+- Search news by topic, sorted by newest, relevance or popularity
+- Article cards with image, source and publish time
+- **✨ Summarize** any article and **🧠 Generate briefing** for the whole result set
+- Switch between Claude and Gemini in the sidebar when both keys are set
+- "Load more" pagination that only fetches the next page
+- Response caching (news 10 min, summaries 1 h) to save quota
+- Clear error messages for bad keys, rate limits and network failures
 
----
-
-## Requirements
-
-* Python 3.8+
-* streamlit
-* requests
-
-Install dependencies:
+## Quick start
 
 ```bash
-pip install streamlit requests
-```
-
----
-
-## API Key
-
-Get a free API key from [https://newsapi.org](https://newsapi.org) and add it to the code:
-
-```python
-API_KEY = "YOUR_API_KEY"
-```
-
----
-
-## Run the App
-
-```bash
+pip install -r requirements.txt
 streamlit run app.py
 ```
 
----
+## Using real keys for testing
 
-## Usage
+```bash
+cp .streamlit/secrets.toml.example .streamlit/secrets.toml
+# edit the file and fill in only the keys you want
+```
 
-1. Enter a topic in the search box
-2. View news articles
-3. Click **Load More** to see more results
+You can also use environment variables, e.g. `export GEMINI_API_KEY=...`.
+`.streamlit/secrets.toml` is git-ignored. Never commit real keys.
 
+Models are set in `ai.py` (`DEFAULT_MODELS`); change them there if you prefer another one.
+
+## Tests
+
+```bash
+pip install pytest
+pytest
+```
+
+All network calls are mocked, so tests need no keys.
+
+## Project layout
+
+```
+app.py            Streamlit UI
+news_client.py    NewsAPI client + demo-mode paging
+ai.py             Claude / Gemini summarization (plain REST)
+sample_data.py    Fictional sample articles for demo mode
+tests/            pytest suite
+```
+
+## Notes
+
+- Summaries use the title, description and the short excerpt NewsAPI provides, not the full article, so they're brief by design.
+- The free NewsAPI plan allows about 100 requests/day and at most 100 results per search.
