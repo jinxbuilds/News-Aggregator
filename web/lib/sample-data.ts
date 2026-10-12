@@ -1,0 +1,47 @@
+import type { RawArticle } from "./news";
+
+/** Fictional sample articles for demo mode (no NewsAPI key needed). */
+const a = (i: number, title: string, description: string, content: string, source: string, day: number): RawArticle => ({
+  title,
+  description,
+  content,
+  url: `https://example.com/demo/${i}`,
+  urlToImage: null,
+  publishedAt: `2026-10-${String(day).padStart(2, "0")}T09:00:00Z`,
+  source: { name: source },
+});
+
+export const SAMPLE_ARTICLES: RawArticle[] = [
+  a(1, "Open-source AI model matches proprietary rivals on coding benchmarks",
+    "A community-built AI model scored within a few points of leading closed models on several coding tests.",
+    "Researchers released the model's weights and training recipe, saying it was trained on a fraction of the usual compute. Independent testers are still verifying the results.",
+    "Demo Tech Daily", 9),
+  a(2, "Regulators outline draft rules for AI transparency labels",
+    "A draft proposal would require developers to disclose when content is AI generated.",
+    "The proposal is open for public comment. Industry groups welcomed clarity but warned about compliance costs for small teams.",
+    "Demo Policy Wire", 8),
+  a(3, "Small teams are using AI assistants to cut report-writing time",
+    "A survey of startups finds AI assistants most useful for drafting and summarizing, less for analysis.",
+    "Respondents reported saving several hours a week but said human review remained essential for accuracy.",
+    "Demo Business Post", 7),
+  a(4, "Lunar mission completes key engine test ahead of launch window",
+    "Engineers finished a full-duration engine firing, clearing a major milestone for the upcoming lunar mission.",
+    "Mission managers said data from the test looked nominal and the launch window remains unchanged.",
+    "Demo Space Journal", 9),
+  a(5, "Telescope spots unusual atmosphere signature on distant exoplanet",
+    "Astronomers detected a chemical pattern in an exoplanet's atmosphere that warrants follow-up observations.",
+    "The team cautioned that the signal could have non-biological explanations and called for more data.",
+    "Demo Space Journal", 6),
+  a(6, "Coastal cities invest in flood defenses as sea levels climb",
+    "Several coastal cities announced multi-year climate adaptation budgets focused on flood barriers and wetlands.",
+    "Planners say combining natural buffers with engineered defenses offers the best cost-to-protection ratio.",
+    "Demo Climate Report", 8),
+  a(7, "Solar and battery storage hit record share of new grid capacity",
+    "New grid additions this year were dominated by solar paired with battery storage, an energy analysis finds.",
+    "Falling battery costs and faster permitting were cited as the main drivers of the shift.",
+    "Demo Energy Review", 5),
+  a(8, "Football club unveils youth academy expansion",
+    "The club plans new training facilities and scouting partnerships to develop young players.",
+    "Officials said the first intake under the expanded programme begins next season.",
+    "Demo Sports Desk", 4),
+];

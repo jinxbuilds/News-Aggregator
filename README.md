@@ -9,6 +9,15 @@ A small Streamlit app that searches news by topic and can summarize articles wit
 | `NEWS_API_KEY` | Demo mode with built-in sample articles (try `ai`, `space`, `climate`, `solar`) |
 | `ANTHROPIC_API_KEY` / `GEMINI_API_KEY` | AI buttons are hidden |
 
+## Web version (Vercel)
+
+`web/` is a Next.js port with the same features, built for Vercel (Streamlit can't run there). Import this repo in Vercel with **Root Directory** `web`:
+
+- no environment variables: demo mode with sample articles
+- `NEWS_API_KEY` plus `ANTHROPIC_API_KEY` and/or `GEMINI_API_KEY`: live news with AI summaries and briefings
+
+See [`web/README.md`](web/README.md).
+
 ## Features
 
 - Search news by topic, sorted by newest, relevance or popularity
